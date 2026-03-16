@@ -1,4 +1,5 @@
-#after: 해시를(딕션너리) 사용한 풀이
+# after: 해시를(딕셔너리) 사용한 풀이
+# 딕셔너리는 key, value 쌍으로 데이터를 저장함 (딕셔너리 이름['key']=value로 값을 저장함)
 
 def solution(participant, completion):
     hash_dict = {}

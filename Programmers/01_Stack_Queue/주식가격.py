@@ -1,4 +1,6 @@
+# 스택 안에 넣은 것: 시간의 흐름
 # 
+
 def solution(prices):
     answer = [0]* len(prices)
     stack = []

@@ -1,1 +1,1 @@
-# study-problem-solving
+# Study Problem Solving

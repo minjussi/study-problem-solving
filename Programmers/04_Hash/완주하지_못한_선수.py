@@ -9,7 +9,7 @@ def solution(participant, completion):
         if p in hash_dict:
             hash_dict[p] += 1 # 동명이인이 있으면 숫자 추가
         else:
-            hash_dict[p] = 1  # 처음 등장하면 1명 등록
+            hash_dict[p] = 1  # 처음 등장하면 1명 등록 (value를 1로 주면 됨)
             
     # 2. 완주자 명단 보면서 참가자 명단에서 지우기
     for c in completion:

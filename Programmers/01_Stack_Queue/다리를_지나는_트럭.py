@@ -1,4 +1,6 @@
 # 문제 해결 포인트: 0으로 채워서 시간의 흐름 표현하기
+# collections에서 deque를 활용해 큐 문제를 해결할 수 있다
+
 from collections import deque
 
 def solution(bridge_length, weight, truck_weights):

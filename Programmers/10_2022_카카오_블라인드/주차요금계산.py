@@ -1,49 +1,48 @@
 def solution(fees, records):
+    # 길이가 딱 맞으면 자동 언패킹 가능 
+    basic_time, basic_fee, unit_time, unit_fee = fees
     answer = [] # 차량 번호가 작은 자동차부터 주차 요금 차례로 return
-    in_list = set()
-    result_dict = {}
-    # 1. [0:5] 시각 , [6:10] 차량번호 [11:13] 인 [11:14] 아웃
+    in_dict = {} # {차량번호:입차시각}
+    total_time = {} # {차량번호:총 누적 분}
     for record in records:
-        fee = 0
+        time, car, state = record.split() 
         # 2. in이면 (차량번호, 입차시각)
-        if len(record) == 13:
-            in_list.add((record[6:10], record[0:5]))
-        # 3. out이 나오면 in 리스트에서 차량번호 찾아서 -> 요금 계산
-        elif len(record) == 14:
-            if record[6:10] in in_list:
-                car = record[6:10]
-                in_min = int(in_list[car][0:2])*60 + int(in_list[car][3:5])
-                out_min = int(record[0:2])*60+int(record[3:5])
-                total = out_min - in_min
-                if total <= fees[0]:
-                    fee = fees[1]
-                else:
-                    total = fees[0] - total
-                    fee = -(total//fees[2]) * fees[3]
-            # 4. {'차랑번호':'청구요금'} if 차량번호 존재-> 청구요금에 ++
-            if record[6:10] in result_dict:
-                result_dict[record[6:10]] += fee
-            else:
-                result_dict[record[6:10]] = fee
-    # 5. in_list에 남아 있는 차량 번호와 시각 -> 전부 23:59로 처리
-    last = 23*60+59
-    for car in in_list:
-        fee = 0
-        # 요금 계산부터
-        in_min = int(car[1][0:2])*60+int(car[1][3:5])
-        total = last-in_min
-        if total <= fees[0]:
-            fee = fees[1]
-        else:
-            total = fees[0] - total
-            fee = -(total//fees[2]) * fees[3]
+        if state == 'IN':
+            in_dict[car] = time
+        # 3. out이 나오면 누적 시간에 넣기
+        elif state == "OUT":
+            in_time = in_dict[car]
+            # 분 단위로 계산 (시간 * 60 + 분)
+            in_min = int(in_time[:2]) * 60 + int(in_time[3:])
+            out_min = int(time[:2]) * 60 + int(time[3:])
             
-        if car[0] in result_dict:
-            result_dict[car[0]] += fee
+            # 누적 시간 딕셔너리에 시간 더해주기
+            if car in total_time:
+                total_time[car] += (out_min - in_min)
+            else:
+                total_time[car] = (out_min - in_min)
+                
+            del in_dict[car] # 정산 끝났으니 주차장에서 차 빼기
+
+    # 4. 23:59까지 안 나간 차들 강제 출차 및 시간 누적
+    last_min = 23 * 60 + 59
+    for car, in_time in in_dict.items():
+        in_min = int(in_time[:2]) * 60 + int(in_time[3:])
+        if car in total_time:
+            total_time[car] += (last_min - in_min)
         else:
-            result_dict[car[0]] = fee
-    print(result_dict)
-    for key, values in result_dict:
-        answer.append(key)
-    answer.sort()
+            total_time[car] = (last_min - in_min)
+    # 5. 누적된 시간을 바탕으로 '요금'을 딱 한 번씩만 계산!
+    answer = []
+    # 차량 번호가 작은 순서대로 정렬해야 하니까 딕셔너리 키값을 정렬해서 돌리기
+    for car in sorted(total_time.keys()): 
+        time_spent = total_time[car]
+        
+        if time_spent <= basic_time:
+            fee = basic_fee
+        else:
+            fee = basic_fee + -((basic_time - time_spent) // unit_time) * unit_fee
+            
+        answer.append(fee)
+        
     return answer

@@ -5,8 +5,8 @@ from collections import deque
 
 def solution(bridge_length, weight, truck_weights):
     time = 0
-    bridge = deque([0] * bridge_length)
-    truck_weights = deque(truck_weights)
+    bridge = deque([0] * bridge_length)  # 리스트를 넣어주기 [0, 0, 0] 이런 식으로
+    truck_weights = deque(truck_weights) # 리스트 자체를 삽입 (반복문 사용 가능)
     current_weight = 0 
     
     while bridge:

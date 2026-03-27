@@ -6,6 +6,8 @@ from collections import deque
 def same_word(word1, word2):
     count = 0
     for c1, c2 in zip(word1, word2):
+        # zip 활용해서 각 단어에서 글자 한 개씩 c1, c2에 비교 가능
+        # zip은 딕셔너리를 만들어줌 
         if c1!= c2:
             count +=1
     return count

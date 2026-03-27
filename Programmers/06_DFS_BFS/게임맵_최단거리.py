@@ -18,13 +18,13 @@ def solution(maps):
     
     while queue:
         x, y = queue.popleft()
-        for i in range(4):
+        for i in range(4): # 무조건 상하좌우 다 확인할 것
             nx = x + dx[i]
             ny = y + dy[i]
             if 0 <= nx < n and 0 <= ny < m: # 인덱스 에러 방지. 무조건 확인 !!
-                if maps[nx][ny] == 1 and not visited[nx][ny]:
+                if maps[nx][ny] == 1 and not visited[nx][ny]: # 길을 갈 수 있고, 방문하지 않았으면 
                     visited[nx][ny] = True
-                    maps[nx][ny] = maps[x][y] + 1
+                    maps[nx][ny] = maps[x][y] + 1 # 몇 번을 거쳐 왔는지 길에 표시 
                     queue.append((nx, ny))
                 
     if maps[n-1][m-1] == 1:

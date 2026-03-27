@@ -1,6 +1,7 @@
 # 구조는 잘 잡았으나, 어떤 함수를 사용해야할지 구현 방법을 익히기
 # sort 함수는 오로지 리스트에만 사용 가능
 # sorted는 모든 자료형에 사용 가능, 사용 후에는 튜플을 반환
+# 무조건 오름차순이 기본임 (asc)! 내림차순 하고 싶으면 reverse=True 옵션
 # key=lambda x: (기준 값1, 기준 값2) - lambda 함수 사용법 기억하기
 
 def solution(genres, plays):

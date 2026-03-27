@@ -48,7 +48,8 @@ def solution(n, wires):
 from collections import deque
 
 def bfs(start, graph, n):
-    queue = deque([start])
+    queue = deque([start]) # 인덱스를 넣어야 하는 이유: 반복 가능하려면 리스트나 튜플 형태여야 함
+                           # 그냥 1 이렇게 넣으면 반복 불가 !!!
     visited = [False] * (n + 1) # 송전탑 번호가 1번부터 시작하니까 n+1개 만들기
                                 # 0번째는 아예 쓰지 않는 것임 !!
     visited[start] = True

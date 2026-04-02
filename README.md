@@ -26,7 +26,7 @@
 | 프로그래머스 | | SQL| 서브쿼리의 활용<br> `1. select 절`: 단일 계산값(무조건 값이 1개만 필요할 때 ex. 총 평균 값 등) <br> `2. from 절`: 임시테이블 제작 (집계함수 2번 이상 사용하거나, 조건에 따라 변환 후 다시 그룹화가 필요할 때 등) <br> `3. where 절`: 조건으로 거를 때 (특정 조건에 맞는 행만 걸러내는 역할)|
 | 프로그래머스 | 총 거래 금액 조회 | SQL | 실행 순서 무조건 기억! `from -> where -> group by -> having -> select -> order by`|
 | 프로그래머스 | 대장균 크기에 따라 분류 | SQL (Window Function)| NTILE(나누고 싶은 개수) OVER (ORDER BY 컬럼명) |
-
+| 프로그래머스 | 식품분류별 가장 비싼 식품| SQL (Window Function) | `RANK()`:  <br> `DENSE_RANK()`: <br> `ROW_NUMBER()`: |
 
 ## Environment
 - Python 3

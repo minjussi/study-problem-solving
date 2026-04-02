@@ -1,3 +1,6 @@
+-- window function
+-- NTILE(나누고 싶은 개수) OVER (ORDER BY 컬럼명)
+
 SELECT id, CASE NTILE(4) OVER (ORDER BY size_of_colony desc) 
   WHEN 1 THEN 'CRITICAL' WHEN 2 THEN 'HIGH' WHEN 3 THEN 'MEDIUM' ELSE 'LOW' 
   END AS colony_name

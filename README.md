@@ -27,6 +27,7 @@
 | 프로그래머스 | 총 거래 금액 조회 | SQL | 실행 순서 무조건 기억! `from -> where -> group by -> having -> select -> order by`|
 | 프로그래머스 | 대장균 크기에 따라 분류 | SQL (Window Function)| NTILE(나누고 싶은 개수) OVER (ORDER BY 컬럼명) |
 | 프로그래머스 | 식품분류별 가장 비싼 식품| SQL (Window Function) | `RANK()`:  공동 1등이 2명이면, 그 다음은 3등 <br> `DENSE_RANK()`: 공동 1등이 2명이어도, 그 다음은 2등 <br> `ROW_NUMBER()`: 같은 값이어도 무조건 등수 나누기 / <br> `WHERE category in (조건)`: in 쓸 때 () 괄호 쓰는 거 기억!!|
+| 프로그래머스 | 그룹별 조건에 맞는 식당 목록 | SQL (Window Function) | `DATE_FORMAT(컬럼명, '형식지정 ex. %Y-%m-%d')` <br> `RANK를 써야하는 이유`: 동점 순위 때문에 무조건 RANK 써야 함 <br> 차이점 이해하기 - `PARTITION BY + ORDER BY` : 내가 지정한 방 안에서 1등 찾기 / `ORDER BY`: 테이블 전체 1등 찾기.
 
 ## Environment
 - Python 3

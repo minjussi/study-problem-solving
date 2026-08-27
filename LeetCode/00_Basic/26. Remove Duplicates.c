@@ -1,5 +1,5 @@
 int removeDuplicates(int* nums, int numsSize) {
-    // exception handling
+    // edge case handling
     if (numsSize == 0) return 0;
     // the number of unique values
     // index 0 element is always unique so starts with index 1
